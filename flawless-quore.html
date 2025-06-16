@@ -269,6 +269,16 @@
 
       nextBtn.addEventListener('click',()=>{ step2.classList.remove('active');step3.classList.add('active'); });
     });
+    function sendHeight() {
+    const body = document.body, html = document.documentElement;
+    const height = Math.max(
+      body.scrollHeight, body.offsetHeight,
+      html.clientHeight, html.scrollHeight, html.offsetHeight
+    );
+    parent.postMessage({ frameHeight: height }, '*');
+  }
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
   </script>
 </body>
 </html>
