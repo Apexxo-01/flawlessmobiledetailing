@@ -127,7 +127,7 @@
     </div>
   </div>
 
- <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
   // —————————— State & DOM refs ——————————
   let selectedVehicle = null;
@@ -149,29 +149,29 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: `<h3>🚗 Full Detail for Cars – $149</h3>
              <ul>
                <li><strong>Auto Basic Exterior:</strong> Tires and wheels hand washed. Outside glass cleaned. Towel dried.</li>
-               <li><strong>Auto Basic Interior:</strong> Carpet, seats, cupholders vacuumed. Dash, console, and doors wiped down. Interior protectant applied.</li>
-               <li><strong>Auto Interior Detail:</strong> Floor mats removed. Vacuumed all surfaces. Sanitized dash, controls, steering wheel. UV protectant applied.</li>
-               <li><strong>Auto Exterior Detail:</strong> Exterior wax applied. Door jambs cleaned. Tires dressed. Final towel dry.</li>
+               <li><strong>Auto Basic Interior:</strong> Vacuumed carpet, seats & cupholders; wiped dash & doors; protectant applied.</li>
+               <li><strong>Auto Interior Detail:</strong> Deep vacuum; sanitized all touchpoints; UV protectant on surfaces.</li>
+               <li><strong>Auto Exterior Detail:</strong> Wax applied; door jambs cleaned; tires dressed; final towel dry.</li>
              </ul>`
     },
     SUV: {
       price: 169,
       desc: `<h3>🚙 Full Detail for SUVs – $169</h3>
              <ul>
-               <li><strong>Auto Basic Exterior:</strong> Tires and wheels hand washed. Outside glass cleaned. Towel dried.</li>
-               <li><strong>Auto Basic Interior:</strong> Vacuumed carpet, seats, cupholders. Wiped dash and doors. Protectant applied.</li>
-               <li><strong>Auto Interior Detail:</strong> Deep vacuum. Sanitized surfaces. UV protectant on vinyl and plastics.</li>
-               <li><strong>Auto Exterior Detail:</strong> Wax application. Door jamb cleaning. Tire dressing. Spotless finish.</li>
+               <li><strong>Auto Basic Exterior:</strong> Wheels & tires hand washed; glass cleaned; towel dried.</li>
+               <li><strong>Auto Basic Interior:</strong> Vacuumed carpets & seats; wiped surfaces; protectant applied.</li>
+               <li><strong>Auto Interior Detail:</strong> Deep interior clean; sanitized high-touch areas; fabric care.</li>
+               <li><strong>Auto Exterior Detail:</strong> Wax coating; trim & jambs detailed; tire dressing.</li>
              </ul>`
     },
     Truck: {
       price: 189,
       desc: `<h3>🚚 Full Detail for Trucks – $189</h3>
              <ul>
-               <li><strong>Auto Basic Exterior:</strong> Wheels & tires hand washed. Glass cleaned. Towel dried.</li>
-               <li><strong>Auto Basic Interior:</strong> Vacuumed carpet, seats. Wiped down all surfaces.</li>
-               <li><strong>Auto Interior Detail:</strong> Deep clean of mats, vents, consoles. Sanitized throughout.</li>
-               <li><strong>Auto Exterior Detail:</strong> Wax & protectant applied. Door jambs detailed. Tires dressed.</li>
+               <li><strong>Auto Basic Exterior:</strong> Hand wash & rinse wheels, tires, body; glass cleaned.</li>
+               <li><strong>Auto Basic Interior:</strong> Vacuum interior; wipe dash & panels; apply protectant.</li>
+               <li><strong>Auto Interior Detail:</strong> Deep vacuum & sanitize; treat upholstery & surfaces.</li>
+               <li><strong>Auto Exterior Detail:</strong> Wax, jambs, tire dressing; final touch-up.</li>
              </ul>`
     },
     Motorcycle: {
@@ -185,10 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
       price: 0,
       desc: `<h3>🚌 RV Detailing – $10 per foot</h3>
              <ul>
-               <li><strong>Auto Basic Exterior:</strong> Hand wash & rinse. Glass cleaned. Towel dry.</li>
-               <li><strong>Auto Basic Interior:</strong> Vacuum carpet, seats, fabrics. Wipe down surfaces.</li>
-               <li><strong>Auto Interior Detail:</strong> Deep clean upholstery, vents, controls. Sanitized all touchpoints.</li>
-               <li><strong>Auto Exterior Detail:</strong> Wax application. Door seals cleaned. Final inspection.</li>
+               <li><strong>Auto Basic Exterior:</strong> Hand wash & rinse; glass cleaned; towel dry.</li>
+               <li><strong>Auto Basic Interior:</strong> Vacuum fabrics; wipe surfaces; apply protectant.</li>
+               <li><strong>Auto Interior Detail:</strong> Deep upholstery & vent clean; sanitize touchpoints.</li>
+               <li><strong>Auto Exterior Detail:</strong> Wax & seal; door seal cleaning; final inspection.</li>
              </ul>`
     }
   };
@@ -199,10 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         title: "🧽 Exterior Add-Ons",
         items: [
-          { name: "6 Month Ceramic Wax", price: 75 },
-          { name: "Clay Bar Treatment",     price: 25 },
-          { name: "Engine Bay Detail",      price: 49 },
-          { name: "Headlight Restoration",  price: 49 }
+          { name: "6 Month Ceramic Wax",     price: 75 },
+          { name: "Clay Bar Treatment",       price: 25 },
+          { name: "Engine Bay Detail",        price: 49 },
+          { name: "Headlight Restoration",    price: 49 }
         ]
       },
       {
@@ -230,10 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         title: "🧽 Exterior Add-Ons",
         items: [
-          { name: "6 Month Ceramic Wax", price: 75 },
-          { name: "Clay Bar Treatment",     price: 25 },
-          { name: "Engine Bay Detail",      price: 49 },
-          { name: "Headlight Restoration",  price: 49 }
+          { name: "6 Month Ceramic Wax",     price: 75 },
+          { name: "Clay Bar Treatment",       price: 25 },
+          { name: "Engine Bay Detail",        price: 49 },
+          { name: "Headlight Restoration",    price: 49 }
         ]
       },
       {
@@ -261,10 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         title: "🧽 Exterior Add-Ons",
         items: [
-          { name: "6 Month Ceramic Wax", price: 75 },
-          { name: "Clay Bar Treatment",     price: 25 },
-          { name: "Engine Bay Detail",      price: 49 },
-          { name: "Headlight Restoration",  price: 49 }
+          { name: "6 Month Ceramic Wax",     price: 75 },
+          { name: "Clay Bar Treatment",       price: 25 },
+          { name: "Engine Bay Detail",        price: 49 },
+          { name: "Headlight Restoration",    price: 49 }
         ]
       },
       {
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
           { name: "Mold & Mildew Removal",             price: 100 },
           { name: "Generator Compartment Detail",      price: 50 },
           { name: "Seal & Gasket Inspection",          price: 40 },
-          { name: "Water Repellent Treatment (Exterior)",price: 85 }
+          { name: "Water Repellent Treatment (Exterior)", price: 85 }
         ]
       }
     ]
@@ -403,15 +403,28 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('input[name="excludeSection"]')
     .forEach(r => r.addEventListener('change', calculateTotal));
 
-  // —————————— 9) “Next” button → Step 3 + resize ——————————
-  nextBtn.addEventListener('click', () => {
+  // ———————— 9) “Next” button → Step 3 + resize ————————
+  nextBtn.addEventListener('click', e => {
+    // only proceed on a real user click
+    if (!e.isTrusted) return;
     step2.classList.remove('active');
     step3.classList.add('active');
     sendHeight();
   });
 
-  // —————————— 10) Initial resize on load ——————————
+  // ————————— 10) Initial resize on load —————————
   sendHeight();
+
+  // ——————— 11) Re-measure on resize/orientation ———————
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(sendHeight, 200);
+  });
+  window.addEventListener('orientationchange', sendHeight);
+
+  // ——————— 12) Bonus: watch for any DOM size changes ———————
+  new ResizeObserver(sendHeight).observe(document.body);
 });
 </script>
 
