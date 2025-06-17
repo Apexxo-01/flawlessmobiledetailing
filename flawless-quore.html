@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('[iframe] sending height =', h);
     window.parent.postMessage(
       { type: 'iframeHeight', height: h },
-      '*'
+      '*'  // tighten to your parent origin if desired
     );
   }
 
@@ -347,20 +347,23 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // —————————— 7) Vehicle selection → Step 2 ——————————
-  vehicleBtns.forEach(btn => btn.addEventListener('click', () => {
-    selectedVehicle = btn.dataset.type;
-    step1.classList.remove('active');
-    step2.classList.add('active');
-    step3.classList.remove('active');
-    vehicleBtns.forEach(x => x.classList.remove('selected'));
-    btn.classList.add('selected');
-    packageBox.innerHTML = basePackages[selectedVehicle].desc;
-    renderAddons(selectedVehicle);
-    rvLengthBox.classList.toggle('hidden', selectedVehicle !== 'RV');
-    calculateTotal();
-  }));
+  vehicleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedVehicle = btn.dataset.type;
+      step1.classList.remove('active');
+      step2.classList.add('active');
+      step3.classList.remove('active');
+      vehicleBtns.forEach(x => x.classList.remove('selected'));
+      btn.classList.add('selected');
 
-  // —————————— 8) Wire up add-ons, RV length & exclude options ——————————
+      packageBox.innerHTML = basePackages[selectedVehicle].desc;
+      renderAddons(selectedVehicle);
+      rvLengthBox.classList.toggle('hidden', selectedVehicle !== 'RV');
+      calculateTotal();
+    });
+  });
+
+  // —————————— 8) Hook up addons, RV length & exclude options ——————————
   addonList.addEventListener('change', calculateTotal);
   rvLengthInput.addEventListener('input', calculateTotal);
   document.querySelectorAll('input[name="excludeSection"]')
@@ -377,9 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
   sendHeight();
 });
 </script>
-
-
-
 
 </body>
 </html>
