@@ -3,23 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Detail Quote Widget</title>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/Apexxo-01/flawlessmobiledetailing@main/detail-quote.css"
-  >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Apexxo-01/flawlessmobiledetailing@main/detail-quote.css">
   <style>html,body{margin:0;padding:0;}</style>
 </head>
 <body>
-  <!-- remove the yellow test div and leave just this: -->
   <div id="detail-quote-widget"></div>
-
   <script src="https://cdn.jsdelivr.net/gh/Apexxo-01/flawlessmobiledetailing@main/detail-quote.js"></script>
-
-  <!-- auto-resize -->
   <script>
     function sendHeight() {
       parent.postMessage(
-        { type: 'dq-height', height: document.body.scrollHeight },
+        { type:'dq-height', height: document.body.scrollHeight },
         '*'
       );
     }
