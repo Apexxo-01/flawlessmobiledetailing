@@ -1,0 +1,421 @@
+<div id="detail-quote-widget">
+  <div class="container">
+       <!-- STEP 1 -->
+    <div id="step1" class="step active">
+      <h1>Get An Instant Quote<br>
+        Book Online In Just A Few Steps</h1>
+      <h2>1️⃣ Select Your Vehicle Type</h2>
+      <div class="vehicle-grid">
+        <div class="vehicle-btn" data-type="Car"><span>🚗</span>Car</div>
+        <div class="vehicle-btn" data-type="SUV"><span>🚙</span>SUV</div>
+        <div class="vehicle-btn" data-type="Truck"><span>🚚</span>Truck</div>
+        <div class="vehicle-btn" data-type="Motorcycle"><span>🏍️</span>Motorcycle</div>
+        <div class="vehicle-btn" data-type="RV"><span>🚌</span>RV</div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="step">
+      <h2>2️⃣ Customize Your Package</h2>
+      <div id="rvLengthBox" class="hidden">
+        <label for="rvLengthInput" style="font-size:1.1rem;font-weight:bold;margin-right:10px;">
+          Enter RV Length (in feet):
+        </label>
+        <input type="number" id="rvLengthInput" min="10" max="60" placeholder="e.g., 30"
+               style="font-size:1.1rem;padding:6px 10px;width:100px;">
+      </div>
+      <div id="packageBox" class="package-box"></div>
+      <div class="notes">
+        <p><strong>⚠️ Additional Charges:</strong> In rare cases, vehicles requiring extra time or cleanup may incur a fee of $25–$50. We'll always let you know before starting.</p>
+      </div> 
+      <form id="addonsForm">
+        <div class="addons" id="addonList"></div>
+        <div class="exclude-options" style="margin-top:20px">
+          <label><input type="radio" name="excludeSection" value="none" checked> Full Detail (Recommended)</label>
+          <label><input type="radio" name="excludeSection" value="interior"> Exterior Only (-$50)</label>
+          <label><input type="radio" name="excludeSection" value="exterior"> Interior Only (-$50)</label>
+        </div>
+      </form>
+      <div class="total">Total: $<span id="totalPrice">0</span></div>
+      <button id="nextBtn" class="btn btn-primary">Next: Book Now</button>
+      <!-- after the STEP 3 iframe -->
+<a href="#" class="reset-btn"
+   style="font-size:.9rem; color:#555; text-decoration:underline; margin-top:12px; display:block; text-align:center;">
+  Start Over
+</a>
+
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="step">
+      <h2>🗓 Book Your Appointment</h2>
+      <iframe src="https://api.leadconnectorhq.com/widget/booking/8r2Df2ibe74EycJbAHYu"
+              style="width:100%;border:none;overflow:hidden;min-height:800px"
+              scrolling="no"></iframe>
+      <!-- after the STEP 3 iframe -->
+<a href="#" class="reset-btn"
+   style="font-size:.9rem; color:#555; text-decoration:underline; margin-top:12px; display:block; text-align:center;">
+  Start Over
+</a>
+
+    </div>
+  </div>
+</div>
+
+<style>
+h1 {
+  font-family: var(--font-headline);
+  font-weight: 700;           /* adjust: 600, 800, etc., depending on desired emphasis */
+  font-size: 2.2rem;          /* base size; adjust or make responsive */
+  line-height: 1.0;           /* tweak as needed; tighter for single-line, a bit more for multi-line */
+  letter-spacing: normal;     /* adjust slightly if needed, e.g., 0.5px or -0.5px based on visual test */
+  text-align: center;         /* or left/right per design */
+  margin: 0 0 1rem;           /* spacing below */
+  color: #000 !important;               /* ensure contrast; adjust via CSS variable if theming */
+}
+ h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 10px;
+  display: block;
+}
+#detail-quote-widget h3 {
+  font-size: 1.8rem !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  margin-right: 10px !important;
+  display: block !important;
+}
+  
+  /* namespace everything under #detail-quote-widget to avoid GHL collisions */
+  #detail-quote-widget * { box-sizing: border-box; }
+  #detail-quote-widget { font-family: Arial,sans-serif; }
+  #detail-quote-widget .container {
+    width:100%; max-width:1280px; margin:0 auto;
+    background:#fff; border-radius:18px; padding:28px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+  }
+  #detail-quote-widget h1 { text-align:center; margin-bottom:24px; color:var(--brand-dark); }
+  #detail-quote-widget .step { display:none; }
+  #detail-quote-widget .step.active { display:block; }
+  #detail-quote-widget .vehicle-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px; width:100%;
+  }
+  #detail-quote-widget .vehicle-btn {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:20px; border:2px solid #ddd; border-radius:14px; cursor:pointer;
+    transition:.2s; background:#f3eefc;
+  }
+  #detail-quote-widget .vehicle-btn:hover,
+  #detail-quote-widget .vehicle-btn.selected {
+    border-color:var(--brand-primary); background:#e3d5f6;
+  }
+  #detail-quote-widget .vehicle-btn span { font-size:40px; margin-bottom:8px; }
+  #detail-quote-widget h2 { margin:24px 0 12px; text-align:center; color:var(--brand-primary); }
+  #detail-quote-widget .package-box {
+    background:#f3eefc; padding:18px; border-radius:14px; margin-bottom:24px;
+  }
+  #detail-quote-widget .package-box ul { list-style:disc; margin-left:20px; margin-top:8px; }
+  #detail-quote-widget .addons { margin-top:20px; }
+  #detail-quote-widget .addon-group { margin-bottom:20px; }
+  #detail-quote-widget .addon-group h4 {
+    margin-bottom:10px; color:var(--brand-dark); border-bottom:1px solid #ccc;
+    padding-bottom:5px;
+  }
+  #detail-quote-widget .addon {
+    display:flex; align-items:center; justify-content:space-between;
+    background:#f5f5f5; border-radius:10px; padding:12px 16px; margin-bottom:8px;
+  }
+  #detail-quote-widget .addon-name { flex:1; padding-right:10px; }
+  #detail-quote-widget .addon-price { width:90px; text-align:right; margin-right:10px; }
+  #detail-quote-widget .addon input { order:3; transform:scale(1.3); }
+  #detail-quote-widget .total { font-weight:bold; font-size:1.2rem; text-align:center; margin-top:28px; }
+  #detail-quote-widget .btn {
+    display:block; width:100%; border:none; border-radius:10px; padding:14px;
+    font-size:1rem; cursor:pointer;
+  }
+  #detail-quote-widget .btn-primary { background:var(--brand-primary); color:#fff; margin-top:20px; }
+  #detail-quote-widget .notes {
+    background:#fff5e6; margin-top:28px; padding:16px; border-radius:12px;
+  }
+  #detail-quote-widget .hidden { display:none; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let selectedVehicle = null;
+    const root = document.getElementById('detail-quote-widget');
+    const step1 = root.querySelector('#step1');
+    const step2 = root.querySelector('#step2');
+    const step3 = root.querySelector('#step3');
+    const packageBox = root.querySelector('#packageBox');
+    const rvLengthBox = root.querySelector('#rvLengthBox');
+    const vehicleBtns = root.querySelectorAll('.vehicle-btn');
+    const totalPriceEl = root.querySelector('#totalPrice');
+    const rvLengthInput = root.querySelector('#rvLengthInput');
+    const addonList = root.querySelector('#addonList');
+    const nextBtn = root.querySelector('#nextBtn');
+
+    const basePackages = {
+      Car: { price:149, desc: `<h3>🚗 Full Detail for Cars – $149</h3><ul><li><strong>Auto Basic Exterior:</strong> Tires and wheels hand washed. Outside glass cleaned. Towel dried. Time may vary depending on condition of vehicle.</li><li><strong>Auto Basic Interior:</strong> Carpet, seats, and cupholders vacuumed. Dash, console and doors wiped down. Interior protectant and conditioner for UV protection. Interior glass cleaned. Time may vary depending on condition of vehicle.</li><li><strong>Auto Interior Detail:</strong> Floor mats removed. Vacuumed carpet/seats/console/vents/door panels/cupholders. Cleaned and sanitized Dash/Radio/Display/Steering Wheel. UV protectant and conditioner. Interior glass cleaned.</li><li><strong>Auto Exterior Detail:</strong> Tires and wheel wells hand washed. Exterior waxed. Door jams cleaned. Towel dried. Tires dressed with long lasting tire armor. Time may vary depending</li></ul>` },
+      SUV: { price:169, desc: `<h3>🚙 Full Detail for SUVs – $169</h3><ul><li><strong>Auto Basic Exterior:</strong> Tires and wheels hand washed. Outside glass cleaned. Towel dried. Time may vary depending on condition of vehicle.</li><li><strong>Auto Basic Interior:</strong> Carpet, seats, and cupholders vacuumed. Dash, console and doors wiped down. Interior protectant and conditioner for UV protection. Interior glass cleaned. Time may vary depending on condition of vehicle.</li><li><strong>Auto Interior Detail:</strong> Floor mats removed. Vacuumed carpet/seats/console/vents/door panels/cupholders. Cleaned and sanitized Dash/Radio/Display/Steering Wheel. UV protectant and conditioner. Interior glass cleaned.</li><li><strong>Auto Exterior Detail:</strong> Tires and wheel wells hand washed. Exterior waxed. Door jams cleaned. Towel dried. Tires dressed with long lasting tire armor. Time may vary depending</li></ul>` },
+      Truck: { price:189, desc: `<h3>🚚 Full Detail for Trucks – $189</h3><ul><li><strong>Auto Basic Exterior:</strong> Tires and wheels hand washed. Outside glass cleaned. Towel dried. Time may vary depending on condition of vehicle.</li><li><strong>Auto Basic Interior:</strong> Carpet, seats, and cupholders vacuumed. Dash, console and doors wiped down. Interior protectant and conditioner for UV protection. Interior glass cleaned. Time may vary depending on condition of vehicle.</li><li><strong>Auto Interior Detail:</strong> Floor mats removed. Vacuumed carpet/seats/console/vents/door panels/cupholders. Cleaned and sanitized Dash/Radio/Display/Steering Wheel. UV protectant and conditioner. Interior glass cleaned.</li><li><strong>Auto Exterior Detail:</strong> Tires and wheel wells hand washed. Exterior waxed. Door jams cleaned. Towel dried. Tires dressed with long lasting tire armor. Time may vary depending</li></ul>` },
+      Motorcycle: { price:120, desc: `<h3>🏍️ Full Detail for Motorcycles – $120</h3><ul>
+      <li><strong>Exterior Cleaning:</strong> Thorough hand wash and dry of all bodywork</li>
+      <li><strong>Engine Degrease:</strong> Cleaning and degreasing of engine components</li>
+                  <li><strong>Lubrication:</strong> Lube of all necessary moving parts</li>
+      <li><strong>Chrome Polish:</strong> Basic polishing of chrome surfaces</li>
+    </ul>` },
+      RV: { price:0, desc: `<h3>🚌 RV Detailing – $10 per foot</h3><ul><li><strong>Auto Basic Exterior:</strong> Tires and wheels hand washed. Outside glass cleaned. Towel dried. Time may vary depending on condition of vehicle.</li><li><strong>Auto Basic Interior:</strong> Carpet, seats, and cupholders vacuumed. Dash, console and doors wiped down. Interior protectant and conditioner for UV protection. Interior glass cleaned. Time may vary depending on condition of vehicle.</li><li><strong>Auto Interior Detail:</strong> Floor mats removed. Vacuumed carpet/seats/console/vents/door panels/cupholders. Cleaned and sanitized Dash/Radio/Display/Steering Wheel. UV protectant and conditioner. Interior glass cleaned.</li><li><strong>Auto Exterior Detail:</strong> Tires and wheel wells hand washed. Exterior waxed. Door jams cleaned. Towel dried. Tires dressed with long lasting tire armor. Time may vary depending</li></ul>` }
+    };
+
+const addonGroupsByVehicle = {
+  Car: [
+    {
+      title: "🧽 Exterior Add-Ons", items: [
+        { name: "6 Month Ceramic Wax", price: 75 },
+        { name: "Clay Bar Treatment", price: 25 },
+        { name: "Engine Bay Detail", price: 49 },
+        { name: "Headlight Restoration", price: 49 }
+      ]
+    },
+    {
+      title: "🪑 Interior Add-Ons", items: [
+        { name: "Shampoo Seats (Per Row)", price: 40 },
+        { name: "Shampoo Floors (Per Row)", price: 40 },
+        { name: "Shampoo Seat Belts", price: 30 },
+        { name: "Shampoo Headliner", price: 75 },
+        { name: "Kids Car Seat Cleaning", price: 25 },
+        { name: "Steam (Kills 99% Bacteria)", price: 49 }
+      ]
+    },
+    {
+      title: "🧼 Other Extras", items: [
+        { name: "Pet Hair Removal", price: 40 },
+        { name: "Heavy Sap Removal", price: 75 },
+        { name: "Paint Transfer Removal", price: 75 },
+        { name: "Mold Removal", price: 69 }
+      ]
+    }
+  ],
+
+  SUV: [
+    {
+      title: "🧽 Exterior Add-Ons", items: [
+        { name: "6 Month Ceramic Wax", price: 75 },
+        { name: "Clay Bar Treatment", price: 25 },
+        { name: "Engine Bay Detail", price: 49 },
+        { name: "Headlight Restoration", price: 49 }
+      ]
+    },
+    {
+      title: "🪑 Interior Add-Ons", items: [
+        { name: "Shampoo Seats (Per Row)", price: 40 },
+        { name: "Shampoo Floors (Per Row)", price: 40 },
+        { name: "Shampoo Seat Belts", price: 30 },
+        { name: "Shampoo Headliner", price: 75 },
+        { name: "Kids Car Seat Cleaning", price: 25 },
+        { name: "Steam (Kills 99% Bacteria)", price: 49 }
+      ]
+    },
+    {
+      title: "🧼 Other Extras", items: [
+        { name: "Pet Hair Removal", price: 40 },
+        { name: "Heavy Sap Removal", price: 75 },
+        { name: "Paint Transfer Removal", price: 75 },
+        { name: "Mold Removal", price: 69 }
+      ]
+    }
+  ],  // ← Note this comma closing the SUV array
+
+  Truck: [
+    {
+      title: "🧽 Exterior Add-Ons", items: [
+        { name: "6 Month Ceramic Wax", price: 75 },
+        { name: "Clay Bar Treatment", price: 25 },
+        { name: "Engine Bay Detail", price: 49 },
+        { name: "Headlight Restoration", price: 49 }
+      ]
+    },
+    {
+      title: "🪑 Interior Add-Ons", items: [
+        { name: "Shampoo Seats (Per Row)", price: 40 },
+        { name: "Shampoo Floors (Per Row)", price: 40 },
+        { name: "Shampoo Seat Belts", price: 30 },
+        { name: "Shampoo Headliner", price: 75 },
+        { name: "Kids Car Seat Cleaning", price: 25 },
+        { name: "Steam (Kills 99% Bacteria)", price: 49 }
+      ]
+    },
+    {
+      title: "🧼 Other Extras", items: [
+        { name: "Pet Hair Removal", price: 40 },
+        { name: "Heavy Sap Removal", price: 75 },
+        { name: "Paint Transfer Removal", price: 75 },
+        { name: "Mold Removal", price: 69 }
+      ]
+    }
+  ],
+
+  Motorcycle: [
+    {
+      title: "🚌 Bike Add-Ons", items: [
+        { name: "Chrome Buffing", price: 20 },
+        { name: "Paint Sealant", price: 25 },
+        { name: "Leather/Vinyl Conditioner", price: 20 },
+        { name: "Protective Wax or Sealant Application", price: 20 },
+      { name: "Upholstery & Seat Conditioning", price: 15 },
+      ]
+    }
+  ],
+
+  RV: [
+    {
+      title: "🧽 Exterior RV Add-Ons", items: [
+        { name: "Roof Cleaning & Protective Coating", price: 200 },
+        { name: "Slide-Out Track Cleaning & Lubrication", price: 75 },
+        { name: "Awning Wash & Treatment", price: 60 },
+        { name: "Undercarriage Rinse & Rust Inhibitor", price: 80 }
+      ]
+    },
+    {
+      title: "🛋️ Interior RV Add-Ons", items: [
+        { name: "Upholstery & Fabric Shampoo (Per Section)", price: 50 },
+        { name: "Odor Treatment & Deodorizer", price: 70 },
+        { name: "Cabinet & Countertop Deep Clean", price: 45 },
+        { name: "Carpet & Floor Mat Steam Clean", price: 65 }
+      ]
+    },
+    {
+      title: "⚙️ Specialized RV Services", items: [
+        { name: "Mold & Mildew Removal", price: 100 },
+        { name: "Generator Compartment Detail", price: 50 },
+        { name: "Seal & Gasket Inspection", price: 40 },
+        { name: "Water Repellent Treatment (Exterior)", price: 85 }
+      ]
+    }
+  ]
+};
+
+    function renderAddons(type){
+      addonList.innerHTML = '';
+      (addonGroupsByVehicle[type]||[]).forEach(group=>{
+        const div=document.createElement('div');
+        div.className='addon-group';
+        div.innerHTML=`<h4>${group.title}</h4>`;
+        group.items.forEach(item=>{
+          const a=document.createElement('div');
+          a.className='addon';
+          a.innerHTML=`
+            <span class="addon-name">${item.name}</span>
+            <span class="addon-price">$${item.price}</span>
+            <input type="checkbox" data-price="${item.price}">
+          `;
+          div.appendChild(a);
+        });
+        addonList.appendChild(div);
+      });
+    }
+
+    function calculateTotal(){
+      if(!selectedVehicle) return;
+      let base = (selectedVehicle==='RV')
+        ? (parseInt(rvLengthInput.value||0)*10)
+        : basePackages[selectedVehicle].price;
+      const excl = root.querySelector('input[name="excludeSection"]:checked');
+      if(excl && excl.value!=='none') base -= 50;
+      root.querySelectorAll('#addonList input:checked').forEach(cb=>{
+        base += parseInt(cb.dataset.price);
+      });
+      totalPriceEl.textContent = base;
+    }
+
+    vehicleBtns.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        selectedVehicle = btn.dataset.type;
+        step1.classList.remove('active');
+        step2.classList.add('active');
+        step3.classList.remove('active');
+        vehicleBtns.forEach(x=>x.classList.remove('selected'));
+        btn.classList.add('selected');
+        packageBox.innerHTML = basePackages[selectedVehicle].desc;
+        renderAddons(selectedVehicle);
+        rvLengthBox.classList.toggle('hidden', selectedVehicle!=='RV');
+        calculateTotal();
+      });
+    });
+
+    addonList.addEventListener('change', calculateTotal);
+    rvLengthInput.addEventListener('input', calculateTotal);
+    root.querySelectorAll('input[name="excludeSection"]')
+        .forEach(r=>r.addEventListener('change', calculateTotal));
+
+nextBtn.addEventListener('click', () => {
+  // ⭐️ 1. Collect everything:
+  const vehicleType = selectedVehicle;
+  const packageDescription = basePackages[vehicleType].desc;
+  const addons = Array.from(
+    addonList.querySelectorAll('input[type="checkbox"]:checked')
+  ).map(cb => {
+    const name  = cb.closest('.addon').querySelector('.addon-name').textContent;
+    const price = parseInt(cb.dataset.price, 10);
+    return { name, price };
+  });
+  const totalPrice = parseInt(totalPriceEl.textContent, 10);
+
+  // ⭐️ 2. Fire & forget the webhook
+  fetch(
+    'https://services.leadconnectorhq.com/hooks/weToQt7uGofAXq2d0uTh/webhook-trigger/5a308e72-7e90-4941-86cd-b4de78e08e6e',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        vehicleType,
+        packageDescription,
+        addons,
+        totalPrice
+      })
+    }
+  )
+  .catch(err => console.error('Webhook error:', err));
+
+  // ⭐️ 3. Immediately move to Step 3
+  step2.classList.remove('active');
+  step3.classList.add('active');
+  sendHeight(); // or resizeIframe()
+
+    });
+    // ─── Reset widget helper ──────────────────────────────────────────────────
+  function resetWidget() {
+    // 1️⃣ clear selection
+    selectedVehicle = null;
+    vehicleBtns.forEach(b => b.classList.remove('selected'));
+
+    // 2️⃣ clear package/add-ons & price
+    packageBox.innerHTML = '';
+    addonList.innerHTML   = '';
+    rvLengthInput.value   = '';
+    totalPriceEl.textContent = '0';
+
+    // 3️⃣ go back to Step 1
+    step1.classList.add('active');
+    step2.classList.remove('active');
+    step3.classList.remove('active');
+
+    // 4️⃣ scroll into view
+    root.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // wire up all "Start Over" links/buttons
+  root.querySelectorAll('.reset-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      resetWidget();
+    });
+  });
+  
+    
+  });
+</script>
