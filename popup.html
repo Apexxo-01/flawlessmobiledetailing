@@ -171,80 +171,222 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const basePackages = {
     Car: {
-      price:149,
-      desc:`<h3>🚗 Full Detail for Cars – $149</h3>
+      price:159,
+      desc:`<h3>🚗 Full Detail for Cars – $159</h3>
         <ul>
-          <li><strong>Auto Basic Exterior:</strong> Tires & wheels hand washed, outside glass cleaned, towel dried.</li>
-          <li><strong>Auto Basic Interior:</strong> Vacuum carpets, seats & cupholders; wipe & protect surfaces.</li>
-          <li><strong>Auto Interior Detail:</strong> Remove mats, vacuum vents, sanitize steering wheel & surfaces.</li>
-          <li><strong>Auto Exterior Detail:</strong> Wax & polish, clean door jams, dress tires.</li>
-        </ul>`
+  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
+  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
+  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
+  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
+  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
+  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
+</ul>
     },
     SUV: {
-      price:169,
-      desc:`<h3>🚙 Full Detail for SUVs – $169</h3><ul><li>…same as Car but sized for SUVs…</li></ul>`
+      price:179,
+      desc:`<h3>🚙 Full Detail for SUVs – $179</h3>
+        <ul>
+  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
+  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
+  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
+  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
+  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
+  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
+</ul>
     },
     Truck: {
       price:189,
-      desc:`<h3>🚚 Full Detail for Trucks – $189</h3><ul><li>…same as Car but sized for Trucks…</li></ul>`
+      desc:`<h3>🚚 Full Detail for Trucks – $189</h3>
+      <ul>
+  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
+  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
+  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
+  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
+  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
+  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
+</ul>
     },
     Motorcycle: {
-      price:120,
-      desc:`<h3>🏍️ Full Detail for Motorcycles – $120</h3>
+      price:85,
+      desc:`<h3>🏍️ Full Detail for Motorcycles – $85</h3>
         <ul>
-          <li>Hand wash & dry bodywork</li>
-          <li>Engine degrease & lubrication</li>
-          <li>Chrome polish & protective wax</li>
-        </ul>`
+  <li><strong>Wash:</strong> Hand wash bodywork & towel dry.</li>
+  <li><strong>Degrease:</strong> Engine degrease & lubrication.</li>
+  <li><strong>Chrome Polish:</strong> Polish chrome surfaces to a brilliant shine.</li>
+  <li><strong>Wax:</strong> Apply protective wax coating.</li>
+</ul>
+
     },
     RV: {
       price:0, // per foot
-      desc:`<h3>🚌 RV Detailing – $10 per foot</h3><ul><li>Steps as above, scaled to RV length.</li></ul>`
+      desc:`<h3>🚌 RV Detailing – $12 per foot</h3>
+      <ul>
+  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
+  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
+  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
+  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
+  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
+  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
+</ul>
     },
     Boat: {
       price:299,
       desc:`<h3>⛵ Full Detail for Boats – $299</h3>
         <ul>
-          <li><strong>Hull Wash & Rinse:</strong> Remove salt, algae & grime.</li>
-          <li><strong>Deck & Cockpit Cleaning:</strong> Hand wash all deck areas, seating & consoles.</li>
-          <li><strong>Cabin Interior Detail:</strong> Vacuum carpets, wipe surfaces & treat upholstery.</li>
-          <li><strong>Exterior Wax & Polish:</strong> Marine-grade wax for UV protection & shine.</li>
-          <li><strong>Bilge Cleaning:</strong> Sanitize bilge compartments.</li>
-        </ul>`
+  <li><strong>Hull Wash & Rinse:</strong> Remove salt, algae & grime from hull, seats & compartments.</li>
+  <li><strong>Deck & Cockpit Cleaning:</strong> Hand wash all deck areas, seating & consoles.</li>
+  <li><strong>Cabin Interior Detail:</strong> Vacuum carpets, wipe surfaces & treat upholstery.</li>
+  <li><strong>Exterior Wax & Polish:</strong> Apply marine-grade wax & polish for UV protection & shine; includes hull cleaning.</li>
+  <li><strong>Bilge Cleaning:</strong> Sanitize bilge compartments & remove mildew.</li>
+</ul>
+
     }
   };
 
   const addonGroupsByVehicle = {
-    Car: [ /* existing Car add-ons */ ],
-    SUV: [ /* existing SUV add-ons */ ],
-    Truck: [ /* existing Truck add-ons */ ],
-    Motorcycle: [ /* existing Motorcycle add-ons */ ],
-    RV: [ /* existing RV add-ons */ ],
+    Car: [
+    {
+      title: "🧽 Exterior Add-Ons", items: [
+        { name: "Paint Restoration (starts at)", price: 150 },
+        { name: "Scratch Removal (light, per panel)", price: 60 },
+        { name: "Engine Bay Detail", price: 50 },
+        { name: "Headlight Restoration (per headlight)", price: 50 }
+      ]
+    },
+    {
+      title: "🪑 Interior Add-Ons", items: [
+        { name: "Shampoo Seats (Per Row)", price: 30 },
+        { name: "Shampoo Floors (Per Row)", price: 30 },
+        { name: "Shampoo Seat Belts", price: 30 },
+        { name: "Shampoo Headliner", price: 65 },
+        { name: "Kids Car Seat Cleaning", price: 25 },
+        { name: "Odor Removal", price: 70 }
+      ]
+    },
+    {
+      title: "🧼 Other Extras", items: [
+        { name: "Pet Hair Removal", price: 30 },
+        { name: "Heavy Sap Removal", price: 50 }
+      ]
+    }
+  ],
+
+    SUV: [
+    {
+      title: "🧽 Exterior Add-Ons", items: [
+        { name: "Paint Restoration (starts at)", price: 150 },
+        { name: "Scratch Removal (light, per panel)", price: 60 },
+        { name: "Engine Bay Detail", price: 50 },
+        { name: "Headlight Restoration (per headlight)", price: 50 }
+      ]
+    },
+    {
+      title: "🪑 Interior Add-Ons", items: [
+        { name: "Shampoo Seats (Per Row)", price: 30 },
+        { name: "Shampoo Floors (Per Row)", price: 30 },
+        { name: "Shampoo Seat Belts", price: 30 },
+        { name: "Shampoo Headliner", price: 65 },
+        { name: "Kids Car Seat Cleaning", price: 25 },
+        { name: "Odor Removal", price: 70 }
+      ]
+    },
+    {
+      title: "🧼 Other Extras", items: [
+        { name: "Pet Hair Removal", price: 30 },
+        { name: "Heavy Sap Removal", price: 50 }
+      ]
+    }
+  ],  // ← Note this comma closing the SUV array
+
+
+    Truck: [
+    {
+      title: "🧽 Exterior Add-Ons", items: [
+        { name: "Paint Restoration (starts at)", price: 150 },
+        { name: "Scratch Removal (light, per panel)", price: 60 },
+        { name: "Engine Bay Detail", price: 50 },
+        { name: "Headlight Restoration (per headlight)", price: 50 }
+      ]
+    },
+    {
+      title: "🪑 Interior Add-Ons", items: [
+        { name: "Shampoo Seats (Per Row)", price: 30 },
+        { name: "Shampoo Floors (Per Row)", price: 30 },
+        { name: "Shampoo Seat Belts", price: 30 },
+        { name: "Shampoo Headliner", price: 65 },
+        { name: "Kids Car Seat Cleaning", price: 25 },
+        { name: "Odor Removal", price: 70 }
+      ]
+    },
+    {
+      title: "🧼 Other Extras", items: [
+        { name: "Pet Hair Removal", price: 30 },
+        { name: "Heavy Sap Removal", price: 50 }
+      ]
+    }
+  ],
+
+    Motorcycle: [
+    {
+      title: "🚌 Bike Add-Ons", items: [
+        { name: "Chrome Buffing", price: 20 },
+        { name: "Leather/Vinyl Conditioner", price: 20 },
+        { name: "Protective Wax or Sealant Application", price: 20 },
+      { name: "Upholstery & Seat Conditioning", price: 15 },
+         { name: "Headlight Restoration", price: 50 }
+      ]
+    }
+  ],
+
+    RV: [
+    {
+      title: "🧽 Exterior RV Add-Ons", items: [
+        { name: "Paint Restoration (starts at)", price: 150 },
+        { name: "Scratch Removal (light, per panel)", price: 60 },
+        { name: "Engine Bay Detail", price: 50 },
+        { name: "Headlight Restoration (per headlight)", price: 50 }
+      ]
+    },
+    {
+      title: "🛋️ Interior RV Add-Ons", items: [
+        { name: "Upholstery & Fabric Shampoo (Per Section)", price: 30 },
+        { name: "Odor Treatment & Deodorizer", price: 70 },
+        { name: "Cabinet & Countertop Deep Clean", price: 45 },
+        { name: "Carpet & Floor Mat Steam Clean", price: 65 }
+      ]
+    },
+    {
+      title: "⚙️ Specialized RV Services", items: [
+        { name: "Mold & Mildew Removal", price: 100 },
+        { name: "Generator Compartment Detail", price: 50 },
+        { name: "Water Repellent Treatment (Exterior)", price: 85 }
+      ]
+    }
+  ],
     Boat: [
-      {
-        title:"🛥️ Exterior Add-Ons",
-        items:[
-          {name:"Marine-Grade Wax Application",price:150},
-          {name:"Hull Polishing & Buffing",       price:200},
-          {name:"Gelcoat Restoration",            price:250}
-        ]
-      },
-      {
-        title:"🛋️ Interior Add-Ons",
-        items:[
-          {name:"Cabin Deep Clean",             price:100},
-          {name:"Vinyl & Upholstery Treatment", price:75},
-          {name:"Carpet Shampoo & Deodorize",    price:80}
-        ]
-      },
-      {
-        title:"🌊 Marine-Specific Services",
-        items:[
-          {name:"Bilge Sanitation",          price:120},
-          {name:"Anti-Fouling Paint Prep",   price:180},
-          {name:"Engine Bay Flush & Detail", price:130}
-        ]
-      }
+{
+    title: "🛥️ Exterior Add-Ons",
+    items: [
+      { name: "Marine-Grade Wax Application",     price: 150 },
+      { name: "Gelcoat Restoration",              price: 250 },
+      { name: "Anti-Fouling Paint Prep",          price: 180 }
+    ]
+  },
+  {
+    title: "🛋️ Interior Add-Ons",
+    items: [
+      { name: "Cabin Deep Clean",                 price: 100 },
+      { name: "Vinyl & Upholstery Treatment",     price: 75  },
+      { name: "Carpet Shampoo & Deodorize",        price: 80 }
+    ]
+  },
+  {
+    title: "🌊 Marine-Specific Services",
+    items: [
+      { name: "Bilge Sanitation",                 price: 120 },
+      { name: "Engine Bay Flush & Detail",        price: 130 }
+    ]
+  }
     ]
   };
 
