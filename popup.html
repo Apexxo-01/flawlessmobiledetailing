@@ -1,9 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Instant Detail Quote</title>
+  <style>
+    /* ================= Global ================= */
+    body { margin:0; padding:1rem; font-family:Arial,sans-serif; background:#f6f6f6; }
+    h1, h2, h3, h4 { margin:0; }
+    a { color:inherit; text-decoration:none; }
+    /* ============== Widget Container ============== */
+    #detail-quote-widget .container {
+      width:100%; max-width:800px; margin:0 auto;
+      background:#fff; border-radius:18px; padding:28px;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+    /* ============== Steps ============== */
+    #detail-quote-widget .step { display:none; }
+    #detail-quote-widget .step.active { display:block; }
+    /* ============== Headings ============== */
+    #detail-quote-widget h1 {
+      font-size:2.2rem; text-align:center; margin-bottom:1.5rem;
+      color:#231539;
+    }
+    #detail-quote-widget h2 {
+      font-size:1.8rem; text-align:center; margin-bottom:1rem;
+      color:#967cd8;
+    }
+    #detail-quote-widget h3 { margin-bottom:.75rem; color:#231539; }
+    /* ============== Vehicle Grid ============== */
+    #detail-quote-widget .vehicle-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:15px;
+    }
+    #detail-quote-widget .vehicle-btn {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:16px; border:2px solid #ddd; border-radius:12px; cursor:pointer;
+      background:#f3eefc; transition:.2s;
+    }
+    #detail-quote-widget .vehicle-btn.selected,
+    #detail-quote-widget .vehicle-btn:hover {
+      border-color:#967cd8; background:#e3d5f6;
+    }
+    #detail-quote-widget .vehicle-btn span { font-size:2.5rem; margin-bottom:.5rem; }
+    /* ============== Package & Add-Ons ============== */
+    #detail-quote-widget .package-box {
+      background:#f3eefc; padding:18px; border-radius:12px; margin-bottom:24px;
+    }
+    #detail-quote-widget .addon-group { margin-bottom:20px; }
+    #detail-quote-widget .addon-group h4 {
+      margin-bottom:10px; font-weight:bold; color:#231539;
+    }
+    #detail-quote-widget .addon {
+      display:flex; align-items:center; justify-content:space-between;
+      background:#f5f5f5; border-radius:10px; padding:12px 16px; margin-bottom:8px;
+    }
+    #detail-quote-widget .addon-name { flex:1; }
+    #detail-quote-widget .addon-price { width:60px; text-align:right; margin-right:10px; }
+    #detail-quote-widget .total {
+      font-weight:bold; font-size:1.2rem; text-align:center; margin-top:20px;
+    }
+    /* ============== Buttons & Notes ============== */
+    #detail-quote-widget .btn {
+      display:block; width:100%; padding:14px; border:none;
+      border-radius:10px; font-size:1rem; cursor:pointer;
+      margin-top:20px;
+    }
+    #detail-quote-widget .btn-primary {
+      background:#5b21b6; color:#fff;
+    }
+    #detail-quote-widget .btn-primary:hover {
+      background:#4c1d95;
+    }
+    #detail-quote-widget .reset-btn {
+      text-align:center; font-size:.9rem; color:#555;
+      margin-top:12px; display:block;
+    }
+    #detail-quote-widget .notes {
+      background:#fff5e6; padding:16px; border-radius:12px; margin-top:24px;
+    }
+    #detail-quote-widget .hidden { display:none; }
+  </style>
+</head>
+<body>
+
 <div id="detail-quote-widget">
   <div class="container">
+
     <!-- STEP 1 -->
     <div id="step1" class="step active">
-      <h1>Get An Instant Quote<br>
-        Book Online In Just A Few Steps</h1>
+      <h1>Get An Instant Quote<br>Book Online In Just A Few Steps</h1>
       <h2>1️⃣ Select Your Vehicle Type</h2>
       <div class="vehicle-grid">
         <div class="vehicle-btn" data-type="Car"><span>🚗</span>Car</div>
@@ -11,7 +96,6 @@
         <div class="vehicle-btn" data-type="Truck"><span>🚚</span>Truck</div>
         <div class="vehicle-btn" data-type="Motorcycle"><span>🏍️</span>Motorcycle</div>
         <div class="vehicle-btn" data-type="RV"><span>🚌</span>RV</div>
-        <!-- Boat button added -->
         <div class="vehicle-btn" data-type="Boat"><span>⛵</span>Boat</div>
       </div>
     </div>
@@ -20,140 +104,37 @@
     <div id="step2" class="step">
       <h2>2️⃣ Customize Your Package</h2>
       <div id="rvLengthBox" class="hidden">
-        <label for="rvLengthInput" style="font-size:1.1rem;font-weight:bold;margin-right:10px;">
-          Enter RV Length (in feet):
-        </label>
-        <input type="number" id="rvLengthInput" min="10" max="60" placeholder="e.g., 30"
-               style="font-size:1.1rem;padding:6px 10px;width:100px;">
+        <label for="rvLengthInput">Enter RV Length (ft):</label>
+        <input type="number" id="rvLengthInput" min="10" max="60" placeholder="30">
       </div>
       <div id="packageBox" class="package-box"></div>
-      <div class="notes">
-        <p><strong>⚠️ Additional Charges:</strong> In rare cases, vehicles requiring extra time or cleanup may incur a fee of $25–$50. We'll always let you know before starting.</p>
-      </div> 
       <form id="addonsForm">
         <div class="addons" id="addonList"></div>
-        <div class="exclude-options" style="margin-top:20px">
-          <label><input type="radio" name="excludeSection" value="none" checked> Full Detail (Recommended)</label>
+        <div class="exclude-options">
+          <label><input type="radio" name="excludeSection" value="none" checked> Full Detail</label>
           <label><input type="radio" name="excludeSection" value="interior"> Exterior Only (-$50)</label>
           <label><input type="radio" name="excludeSection" value="exterior"> Interior Only (-$50)</label>
         </div>
       </form>
       <div class="total">Total: $<span id="totalPrice">0</span></div>
       <button id="nextBtn" class="btn btn-primary">Next: Book Now</button>
-      <a href="#" class="reset-btn"
-         style="font-size:.9rem; color:#555; text-decoration:underline; margin-top:12px; display:block; text-align:center;">
-        Start Over
-      </a>
+      <a href="#" class="reset-btn">Start Over</a>
+      <div class="notes">
+        <strong>⚠️ Additional Charges:</strong> Vehicles requiring extra time may incur a $25–$50 fee.
+      </div>
     </div>
 
     <!-- STEP 3 -->
     <div id="step3" class="step">
       <h2>🗓 Book Your Appointment</h2>
       <iframe src="https://api.leadconnectorhq.com/widget/booking/8r2Df2ibe74EycJbAHYu"
-              style="width:100%;border:none;overflow:hidden;min-height:800px"
-              scrolling="no"></iframe>
-      <a href="#" class="reset-btn"
-         style="font-size:.9rem; color:#555; text-decoration:underline; margin-top:12px; display:block; text-align:center;">
-        Start Over
-      </a>
+              style="width:100%; border:none; min-height:700px;" scrolling="no"></iframe>
+      <a href="#" class="reset-btn">Start Over</a>
     </div>
+
   </div>
 </div>
 
-<style>
-h1 {
-  font-family: var(--font-headline);
-  font-weight: 700;           /* adjust: 600, 800, etc., depending on desired emphasis */
-  font-size: 2.2rem;          /* base size; adjust or make responsive */
-  line-height: 1.0;           /* tweak as needed; tighter for single-line, a bit more for multi-line */
-  letter-spacing: normal;     /* adjust slightly if needed, e.g., 0.5px or -0.5px based on visual test */
-  text-align: center;         /* or left/right per design */
-  margin: 0 0 1rem;           /* spacing below */
-  color: #000 !important;               /* ensure contrast; adjust via CSS variable if theming */
-}
- h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-right: 10px;
-  display: block;
-}
-#detail-quote-widget h3 {
-  font-size: 1.8rem !important;
-  font-weight: bold !important;
-  text-align: center !important;
-  margin-right: 10px !important;
-  display: block !important;
-}
-  
-  /* namespace everything under #detail-quote-widget to avoid GHL collisions */
-  #detail-quote-widget * { box-sizing: border-box; }
-  #detail-quote-widget { font-family: Arial,sans-serif; }
-  #detail-quote-widget .container {
-    width:100%; max-width:1280px; margin:0 auto;
-    background:#fff; border-radius:18px; padding:28px;
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-  }
-  #detail-quote-widget h1 { text-align:center; margin-bottom:24px; color:var(--brand-dark); }
-  #detail-quote-widget .step { display:none; }
-  #detail-quote-widget .step.active { display:block; }
-  #detail-quote-widget .vehicle-grid {
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:20px; width:100%;
-  }
-  #detail-quote-widget .vehicle-btn {
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:20px; border:2px solid #ddd; border-radius:14px; cursor:pointer;
-    transition:.2s; background:#f3eefc;
-  }
-  #detail-quote-widget .vehicle-btn:hover,
-  #detail-quote-widget .vehicle-btn.selected {
-    border-color:var(--brand-primary); background:#e3d5f6;
-  }
-  #detail-quote-widget .vehicle-btn span { font-size:40px; margin-bottom:8px; }
-  #detail-quote-widget h2 { margin:24px 0 12px; text-align:center; color:var(--brand-primary); }
-  #detail-quote-widget .package-box {
-    background:#f3eefc; padding:18px; border-radius:14px; margin-bottom:24px;
-  }
-  #detail-quote-widget .package-box ul { list-style:disc; margin-left:20px; margin-top:8px; }
-  #detail-quote-widget .addons { margin-top:20px; }
-  #detail-quote-widget .addon-group { margin-bottom:20px; }
-  #detail-quote-widget .addon-group h4 {
-    margin-bottom:10px; color:var(--brand-dark); border-bottom:1px solid #ccc;
-    padding-bottom:5px;
-  }
-  #detail-quote-widget .addon {
-    display:flex; align-items:center; justify-content:space-between;
-    background:#f5f5f5; border-radius:10px; padding:12px 16px; margin-bottom:8px;
-  }
-  #detail-quote-widget .addon-name { flex:1; padding-right:10px; }
-  #detail-quote-widget .addon-price { width:90px; text-align:right; margin-right:10px; }
-  #detail-quote-widget .addon input { order:3; transform:scale(1.3); }
-  #detail-quote-widget .total { font-weight:bold; font-size:1.2rem; text-align:center; margin-top:28px; }
-  #detail-quote-widget .btn {
-    display:block; width:100%; border:none; border-radius:10px; padding:14px;
-    font-size:1rem; cursor:pointer;
-  }
-  #detail-quote-widget .btn-primary { background:var(--brand-primary); color:#fff; margin-top:20px; }
-  #detail-quote-widget .notes {
-    background:#fff5e6; margin-top:28px; padding:16px; border-radius:12px;
-  }
-  #detail-quote-widget .hidden { display:none; }
-
-
-#detail-quote-widget .btn-primary {
-  background: #5b21b6 !important;  /* a deep purple (or any brand color you like) */
-  color: #ffffff !important;       /* white text for contrast */
-  border: none !important;         /* remove any unwanted border */
-}
-
-#detail-quote-widget .btn-primary:hover {
-  background: #4c1d95 !important;  /* slightly darker on hover */
-}
-
-
-  
-</style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   let selectedVehicle = null;
@@ -171,231 +152,115 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const basePackages = {
     Car: {
-      price:159,
-      desc:`<h3>🚗 Full Detail for Cars – $159</h3>
-        <ul>
-  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
-  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
-  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
-  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
-  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
-  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
-</ul>
+      price: 159,
+      desc: `<h3>🚗 Full Detail for Cars – $159</h3>
+             <ul>
+               <li><strong>Exterior Wash:</strong> Hand wash, wheels & tires; towel dry.</li>
+               <li><strong>Wax & Polish:</strong> Protective exterior coatings.</li>
+               <li><strong>Window Cleaning:</strong> Inside & out.</li>
+               <li><strong>Vacuum:</strong> Carpets, seats, mats & vents.</li>
+               <li><strong>Interior Treatment:</strong> UV protectant on all surfaces.</li>
+             </ul>`,
     },
     SUV: {
-      price:179,
-      desc:`<h3>🚙 Full Detail for SUVs – $179</h3>
-        <ul>
-  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
-  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
-  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
-  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
-  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
-  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
-</ul>
+      price: 179,
+      desc: `<h3>🚙 Full Detail for SUVs – $179</h3>
+             <ul>
+               <li><strong>Exterior Wash:</strong> Hand wash, wheels & tires; towel dry.</li>
+               <li><strong>Wax & Polish:</strong> Protective exterior coatings.</li>
+               <li><strong>Window Cleaning:</strong> Inside & out.</li>
+               <li><strong>Vacuum:</strong> Carpets, seats, mats & vents.</li>
+               <li><strong>Interior Treatment:</strong> UV protectant on all surfaces.</li>
+             </ul>`,
     },
     Truck: {
-      price:189,
-      desc:`<h3>🚚 Full Detail for Trucks – $189</h3>
-      <ul>
-  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
-  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
-  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
-  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
-  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
-  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
-</ul>
+      price: 189,
+      desc: `<h3>🚚 Full Detail for Trucks – $189</h3>
+             <ul>
+               <li><strong>Exterior Wash:</strong> Hand wash, wheels & tires; towel dry.</li>
+               <li><strong>Wax & Polish:</strong> Protective exterior coatings.</li>
+               <li><strong>Window Cleaning:</strong> Inside & out.</li>
+               <li><strong>Vacuum:</strong> Carpets, seats, mats & vents.</li>
+               <li><strong>Interior Treatment:</strong> UV protectant on all surfaces.</li>
+             </ul>`,
     },
     Motorcycle: {
-      price:85,
-      desc:`<h3>🏍️ Full Detail for Motorcycles – $85</h3>
-        <ul>
-  <li><strong>Wash:</strong> Hand wash bodywork & towel dry.</li>
-  <li><strong>Degrease:</strong> Engine degrease & lubrication.</li>
-  <li><strong>Chrome Polish:</strong> Polish chrome surfaces to a brilliant shine.</li>
-  <li><strong>Wax:</strong> Apply protective wax coating.</li>
-</ul>
-
+      price: 85,
+      desc: `<h3>🏍️ Full Detail for Motorcycles – $85</h3>
+             <ul>
+               <li><strong>Wash:</strong> Hand wash & towel dry.</li>
+               <li><strong>Degrease:</strong> Engine & chain cleaning.</li>
+               <li><strong>Chrome Polish:</strong> Shine metal surfaces.</li>
+               <li><strong>Wax:</strong> Protective finish.</li>
+             </ul>`,
     },
     RV: {
-      price:0, // per foot
-      desc:`<h3>🚌 RV Detailing – $12 per foot</h3>
-      <ul>
-  <li><strong>Exterior Wash:</strong> Hand wash exterior surfaces, wheels & tires; towel dry.</li>
-  <li><strong>Wax & Polish:</strong> Apply exterior wax and polish for long-lasting shine.</li>
-  <li><strong>Window Cleaning:</strong> Clean both outside and inside glass for crystal-clear visibility.</li>
-  <li><strong>Full Vacuum:</strong> Vacuum carpets, seats, mats, vents & cupholders.</li>
-  <li><strong>Carpet & Seat Cleaning:</strong> Deep-clean carpets and upholstery.</li>
-  <li><strong>Dashboard & Surface Protection:</strong> Wipe down all interior surfaces and apply UV protectant.</li>
-</ul>
+      price: 12, // per foot
+      desc: `<h3>🚌 RV Detailing – $12/ft</h3>
+             <ul>
+               <li><strong>Exterior Wash:</strong> Hand wash & towel dry.</li>
+               <li><strong>Wax & Polish:</strong> Protective coatings.</li>
+               <li><strong>Window Cleaning:</strong> Inside & out.</li>
+               <li><strong>Vacuum:</strong> Carpets & upholstery.</li>
+               <li><strong>Interior Treatment:</strong> UV protectant.</li>
+             </ul>`,
     },
     Boat: {
-      price:299,
-      desc:`<h3>⛵ Full Detail for Boats – $299</h3>
-        <ul>
-  <li><strong>Hull Wash & Rinse:</strong> Remove salt, algae & grime from hull, seats & compartments.</li>
-  <li><strong>Deck & Cockpit Cleaning:</strong> Hand wash all deck areas, seating & consoles.</li>
-  <li><strong>Cabin Interior Detail:</strong> Vacuum carpets, wipe surfaces & treat upholstery.</li>
-  <li><strong>Exterior Wax & Polish:</strong> Apply marine-grade wax & polish for UV protection & shine; includes hull cleaning.</li>
-  <li><strong>Bilge Cleaning:</strong> Sanitize bilge compartments & remove mildew.</li>
-</ul>
-
-    }
+      price: 299,
+      desc: `<h3>⛵ Full Detail for Boats – $299</h3>
+             <ul>
+               <li><strong>Hull Wash:</strong> Remove salt, algae & grime.</li>
+               <li><strong>Deck & Cockpit:</strong> Hand wash & dry.</li>
+               <li><strong>Interior:</strong> Vacuum & wipe upholstery.</li>
+               <li><strong>Wax & Polish:</strong> Marine-grade finish.</li>
+               <li><strong>Bilge Cleaning:</strong> Sanitize & deodorize.</li>
+             </ul>`,
+    },
   };
 
   const addonGroupsByVehicle = {
     Car: [
-    {
-      title: "🧽 Exterior Add-Ons", items: [
-        { name: "Paint Restoration (starts at)", price: 150 },
-        { name: "Scratch Removal (light, per panel)", price: 60 },
-        { name: "Engine Bay Detail", price: 50 },
-        { name: "Headlight Restoration (per headlight)", price: 50 }
-      ]
-    },
-    {
-      title: "🪑 Interior Add-Ons", items: [
-        { name: "Shampoo Seats (Per Row)", price: 30 },
-        { name: "Shampoo Floors (Per Row)", price: 30 },
-        { name: "Shampoo Seat Belts", price: 30 },
-        { name: "Shampoo Headliner", price: 65 },
-        { name: "Kids Car Seat Cleaning", price: 25 },
-        { name: "Odor Removal", price: 70 }
-      ]
-    },
-    {
-      title: "🧼 Other Extras", items: [
-        { name: "Pet Hair Removal", price: 30 },
-        { name: "Heavy Sap Removal", price: 50 }
-      ]
-    }
-  ],
-
-    SUV: [
-    {
-      title: "🧽 Exterior Add-Ons", items: [
-        { name: "Paint Restoration (starts at)", price: 150 },
-        { name: "Scratch Removal (light, per panel)", price: 60 },
-        { name: "Engine Bay Detail", price: 50 },
-        { name: "Headlight Restoration (per headlight)", price: 50 }
-      ]
-    },
-    {
-      title: "🪑 Interior Add-Ons", items: [
-        { name: "Shampoo Seats (Per Row)", price: 30 },
-        { name: "Shampoo Floors (Per Row)", price: 30 },
-        { name: "Shampoo Seat Belts", price: 30 },
-        { name: "Shampoo Headliner", price: 65 },
-        { name: "Kids Car Seat Cleaning", price: 25 },
-        { name: "Odor Removal", price: 70 }
-      ]
-    },
-    {
-      title: "🧼 Other Extras", items: [
-        { name: "Pet Hair Removal", price: 30 },
-        { name: "Heavy Sap Removal", price: 50 }
-      ]
-    }
-  ],  // ← Note this comma closing the SUV array
-
-
-    Truck: [
-    {
-      title: "🧽 Exterior Add-Ons", items: [
-        { name: "Paint Restoration (starts at)", price: 150 },
-        { name: "Scratch Removal (light, per panel)", price: 60 },
-        { name: "Engine Bay Detail", price: 50 },
-        { name: "Headlight Restoration (per headlight)", price: 50 }
-      ]
-    },
-    {
-      title: "🪑 Interior Add-Ons", items: [
-        { name: "Shampoo Seats (Per Row)", price: 30 },
-        { name: "Shampoo Floors (Per Row)", price: 30 },
-        { name: "Shampoo Seat Belts", price: 30 },
-        { name: "Shampoo Headliner", price: 65 },
-        { name: "Kids Car Seat Cleaning", price: 25 },
-        { name: "Odor Removal", price: 70 }
-      ]
-    },
-    {
-      title: "🧼 Other Extras", items: [
-        { name: "Pet Hair Removal", price: 30 },
-        { name: "Heavy Sap Removal", price: 50 }
-      ]
-    }
-  ],
-
-    Motorcycle: [
-    {
-      title: "🚌 Bike Add-Ons", items: [
-        { name: "Chrome Buffing", price: 20 },
-        { name: "Leather/Vinyl Conditioner", price: 20 },
-        { name: "Protective Wax or Sealant Application", price: 20 },
-      { name: "Upholstery & Seat Conditioning", price: 15 },
-         { name: "Headlight Restoration", price: 50 }
-      ]
-    }
-  ],
-
-    RV: [
-    {
-      title: "🧽 Exterior RV Add-Ons", items: [
-        { name: "Paint Restoration (starts at)", price: 150 },
-        { name: "Scratch Removal (light, per panel)", price: 60 },
-        { name: "Engine Bay Detail", price: 50 },
-        { name: "Headlight Restoration (per headlight)", price: 50 }
-      ]
-    },
-    {
-      title: "🛋️ Interior RV Add-Ons", items: [
-        { name: "Upholstery & Fabric Shampoo (Per Section)", price: 30 },
-        { name: "Odor Treatment & Deodorizer", price: 70 },
-        { name: "Cabinet & Countertop Deep Clean", price: 45 },
-        { name: "Carpet & Floor Mat Steam Clean", price: 65 }
-      ]
-    },
-    {
-      title: "⚙️ Specialized RV Services", items: [
-        { name: "Mold & Mildew Removal", price: 100 },
-        { name: "Generator Compartment Detail", price: 50 },
-        { name: "Water Repellent Treatment (Exterior)", price: 85 }
-      ]
-    }
-  ],
+      { title:"🧽 Exterior Add-Ons", items:[
+          {name:"Paint Restoration", price:150},
+          {name:"Scratch Removal", price:60},
+          {name:"Engine Bay Detail", price:50},
+          {name:"Headlight Restoration", price:50}
+      ]},
+      { title:"🪑 Interior Add-Ons", items:[
+          {name:"Seat Shampoo (per row)", price:30},
+          {name:"Headliner Cleaning", price:65},
+          {name:"Odor Removal", price:70}
+      ]},
+      { title:"🧼 Extras", items:[
+          {name:"Pet Hair Removal", price:30},
+          {name:"Sap Removal", price:50}
+      ]}
+    ],
+    SUV: [], Truck: [], Motorcycle: [], RV: [],
     Boat: [
-{
-    title: "🛥️ Exterior Add-Ons",
-    items: [
-      { name: "Marine-Grade Wax Application",     price: 150 },
-      { name: "Gelcoat Restoration",              price: 250 },
-      { name: "Anti-Fouling Paint Prep",          price: 180 }
-    ]
-  },
-  {
-    title: "🛋️ Interior Add-Ons",
-    items: [
-      { name: "Cabin Deep Clean",                 price: 100 },
-      { name: "Vinyl & Upholstery Treatment",     price: 75  },
-      { name: "Carpet Shampoo & Deodorize",        price: 80 }
-    ]
-  },
-  {
-    title: "🌊 Marine-Specific Services",
-    items: [
-      { name: "Bilge Sanitation",                 price: 120 },
-      { name: "Engine Bay Flush & Detail",        price: 130 }
-    ]
-  }
+      { title:"🛥️ Exterior Add-Ons", items:[
+          {name:"Marine-Grade Wax", price:150},
+          {name:"Gelcoat Restoration", price:250},
+          {name:"Anti-Fouling Prep", price:180}
+      ]},
+      { title:"🛋️ Interior Add-Ons", items:[
+          {name:"Cabin Deep Clean", price:100},
+          {name:"Upholstery Treatment", price:75},
+          {name:"Carpet Deodorize", price:80}
+      ]},
+      { title:"🌊 Marine Services", items:[
+          {name:"Bilge Sanitation", price:120},
+          {name:"Engine Bay Flush", price:130}
+      ]}
     ]
   };
 
   function renderAddons(type) {
     addonList.innerHTML = '';
-    (addonGroupsByVehicle[type]||[]).forEach(group => {
-      const div = document.createElement('div');
-      div.className = 'addon-group';
-      div.innerHTML = `<h4>${group.title}</h4>`;
+    (addonGroupsByVehicle[type] || []).forEach(group => {
+      const g = document.createElement('div');
+      g.className = 'addon-group';
+      g.innerHTML = `<h4>${group.title}</h4>`;
       group.items.forEach(item => {
         const a = document.createElement('div');
         a.className = 'addon';
@@ -404,21 +269,21 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="addon-price">$${item.price}</span>
           <input type="checkbox" data-price="${item.price}">
         `;
-        div.appendChild(a);
+        g.appendChild(a);
       });
-      addonList.appendChild(div);
+      addonList.appendChild(g);
     });
   }
 
   function calculateTotal() {
     if (!selectedVehicle) return;
-    let base = selectedVehicle==='RV'
-      ? (parseInt(rvLengthInput.value||0)*10)
+    let base = selectedVehicle === 'RV'
+      ? (parseInt(rvLengthInput.value || 0) * basePackages.RV.price)
       : basePackages[selectedVehicle].price;
-    const excl = root.querySelector('input[name="excludeSection"]:checked');
-    if (excl && excl.value!=='none') base -= 50;
-    root.querySelectorAll('#addonList input:checked').forEach(cb => {
-      base += parseInt(cb.dataset.price,10);
+    const excl = root.querySelector('input[name="excludeSection"]:checked').value;
+    if (excl !== 'none') base -= 50;
+    addonList.querySelectorAll('input:checked').forEach(cb => {
+      base += parseInt(cb.dataset.price, 10);
     });
     totalPriceEl.textContent = base;
   }
@@ -428,64 +293,56 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedVehicle = btn.dataset.type;
       step1.classList.remove('active');
       step2.classList.add('active');
-      step3.classList.remove('active');
-      vehicleBtns.forEach(x=>x.classList.remove('selected'));
-      btn.classList.add('selected');
+      vehicleBtns.forEach(b => b.classList.toggle('selected', b === btn));
       packageBox.innerHTML = basePackages[selectedVehicle].desc;
       renderAddons(selectedVehicle);
-      rvLengthBox.classList.toggle('hidden', selectedVehicle!=='RV');
+      rvLengthBox.classList.toggle('hidden', selectedVehicle !== 'RV');
       calculateTotal();
     });
   });
 
   addonList.addEventListener('change', calculateTotal);
   rvLengthInput.addEventListener('input', calculateTotal);
-  root.querySelectorAll('input[name="excludeSection"]').forEach(r => r.addEventListener('change', calculateTotal));
+  root.querySelectorAll('input[name="excludeSection"]')
+      .forEach(r => r.addEventListener('change', calculateTotal));
 
   nextBtn.addEventListener('click', () => {
-    // 1️⃣ Gather data
-    const vehicleType = selectedVehicle;
-    const packageDescription = basePackages[vehicleType].desc;
-    const addons = Array.from(addonList.querySelectorAll('input:checked')).map(cb => ({
-      name:  cb.closest('.addon').querySelector('.addon-name').textContent,
-      price: parseInt(cb.dataset.price,10)
-    }));
-    const totalPrice = parseInt(totalPriceEl.textContent,10);
+    // send webhook…
+    fetch('https://services.leadconnectorhq.com/hooks/...', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        vehicleType: selectedVehicle,
+        addons: Array.from(addonList.querySelectorAll('input:checked')).map(cb => ({
+          name: cb.closest('.addon').querySelector('.addon-name').textContent,
+          price: +cb.dataset.price
+        })),
+        total: +totalPriceEl.textContent
+      })
+    }).catch(console.error);
 
-    // 2️⃣ Fire webhook
-    fetch(
-      'https://services.leadconnectorhq.com/hooks/weToQt7uGofAXq2d0uTh/webhook-trigger/5a308e72-7e90-4941-86cd-b4de78e08e6e',
-      {
-        method:'POST',
-        headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify({ vehicleType, packageDescription, addons, totalPrice })
-      }
-    ).catch(err => console.error('Webhook error:',err));
-
-    // 3️⃣ Move to Step 3
     step2.classList.remove('active');
     step3.classList.add('active');
-
-    // 4️⃣ Resize if needed
     if (typeof sendHeight==='function') sendHeight();
   });
 
-  function resetWidget() {
-    selectedVehicle = null;
-    vehicleBtns.forEach(b=>b.classList.remove('selected'));
-    packageBox.innerHTML = '';
-    addonList.innerHTML = '';
-    rvLengthInput.value = '';
-    totalPriceEl.textContent = '0';
-    step1.classList.add('active');
-    step2.classList.remove('active');
-    step3.classList.remove('active');
-    root.scrollIntoView({ behavior:'smooth' });
-  }
-  root.querySelectorAll('.reset-btn').forEach(btn => {
-    btn.addEventListener('click', e => { e.preventDefault(); resetWidget(); });
+  root.querySelectorAll('.reset-btn').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      selectedVehicle = null;
+      rvLengthInput.value = '';
+      totalPriceEl.textContent = '0';
+      packageBox.innerHTML = '';
+      addonList.innerHTML = '';
+      step3.classList.remove('active');
+      step2.classList.remove('active');
+      step1.classList.add('active');
+      vehicleBtns.forEach(b => b.classList.remove('selected'));
+    });
   });
 });
 </script>
 
+</body>
+</html>
 
